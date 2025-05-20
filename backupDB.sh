@@ -1,13 +1,15 @@
+#!/bin/bash
+
+date=$(date '+%d/%m/%Y')
+
 if [ -z "$1" ]; then
-    echo "Usage: $0 mydb.dat"
+    echo "Uso: $0 <ficheiro>"
     exit 1
 fi
 
-if [ -z "$2" ]; then
-    echo "Need to provide the output file name"
-    exit 1
-else
-    cp "$1" "$2"
-fi
+filename=$(basename "$1")
+base="${filename%.*}"
 
-echo "Backup of $1 created as $2"
+cp "$1" "${base}${date}.bck"
+
+echo "Backup criado: ${base}${date}.bck"
